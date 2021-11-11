@@ -4,8 +4,15 @@ const GetBTCPrice = () => {
   const [items, setItems] = useState();
   const [DataisLoaded, setDataisLoaded] = useState(false)
   const [coinList, setCoinList] = useState([])
-  const [selectedCoin, setSelectedCoin] = useState();
+  const [selectedCoin, setSelectedCoin] = useState({
+    "ethereum": {
+        "usd": 4730.48,
+        "usd_market_cap": 564771882900.821,
+        "usd_24h_change": -2.381931884528019
+    }
+});
   let id;
+  let selectedCoinLoad = false;
 
   useEffect(() => {
     setDataisLoaded(false)
@@ -32,7 +39,7 @@ const GetBTCPrice = () => {
       .then((res) => res.json())
       .then((json) =>{
         setSelectedCoin(json);
-        setDataisLoaded(true);
+        console.log(selectedCoinLoad);
       })
   }
 
@@ -44,7 +51,7 @@ const GetBTCPrice = () => {
       </div>
     );
 
-  return <div>{JSON.stringify(selectedCoin)}
+  return( <div>{JSON.stringify(selectedCoin)}
     <h4> Current price on BTC in USD: {items.bpi.USD.rate}</h4>
     <div>
       <datalist id="suggestions">
@@ -54,10 +61,21 @@ const GetBTCPrice = () => {
         )})}
       </datalist>
       <input onChange={(evt)=> id = evt.target.value} autoComplete="on" list="suggestions" /> <button onClick={seachCoin} type="submit">Seach coin Price</button>
+        
+        {/* {selectedCoinLoad &&     */}
+      <div>
+        <ul>
+           <li> Selected coin: </li><br />
+            <li>Name: {JSON.stringify(Object.keys(selectedCoin)[0])}</li><br />
+            <li>Current price: {Object.keys(selectedCoin)[0].usd}</li>
+        </ul>
+      </div>
+       {/* } */}
       
     </div>
 
-  </div>;
+  </div>);
+  
 }
 
 export default GetBTCPrice;

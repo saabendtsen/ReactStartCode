@@ -14,6 +14,7 @@ import AdminManger from "./AdminManager";
 import GetCatFacts from "./GetCatFacts";
 import GetIp from "./GetIp";
 import GetBTCPrice from "./GetBTCPrice";
+import BuyCoins from "./BuyCoins"
 
 export default function Nesting(props) {
   let userrole = props.userrole;
@@ -34,6 +35,9 @@ export default function Nesting(props) {
             </Route>
             <Route path="/btcprice">
               <GetBTCPrice />
+            </Route>
+            <Route path="/buycoins">
+              <BuyCoins />
             </Route>
             {userrole === "admin" && (
               <Route path="/admin">
@@ -74,6 +78,11 @@ const Header = (props) => {
       <li>
         <NavLink activeClassName="selected" to="/btcprice">
           BTC Price
+        </NavLink>
+      </li>
+      <li>
+        <NavLink activeClassName="selected" to="/buycoins">
+          Buy Coin
         </NavLink>
       </li>
 
