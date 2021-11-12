@@ -71,6 +71,7 @@ function apiFacade() {
     login,
     logout,
     fetchData,
+    handleHttpErrors
   };
 }
 const facade = apiFacade();

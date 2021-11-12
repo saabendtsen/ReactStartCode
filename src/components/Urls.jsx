@@ -1,4 +1,5 @@
-const Server_URL = "http://localhost:8080/JavaBackendStartCode_war_exploded";
+const Server_URL = "http://localhost:8080/CA2";
+//const Server_URL = "https://elcaptaino.ninja/JavaBackendStartCode";
 
 const catFacts_URL =
   "http://localhost:8080/CA2_Group_war_exploded/api/info/catfact";
