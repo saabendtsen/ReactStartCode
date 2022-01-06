@@ -12,7 +12,7 @@ import {
 import HomeNested from "./HomeNested";
 import AdminManger from "./AdminManager";
 import GetCatFacts from "./GetCatFacts";
-import GetIp from "./GetIp";
+import Owners from "./Owners";
 import GetBTCPrice from "./GetBTCPrice";
 import BuyCoins from "./BuyCoins"
 
@@ -30,8 +30,8 @@ export default function Nesting(props) {
             <Route path="/catfacts">
               <GetCatFacts />
             </Route>
-            <Route path="/ip">
-              <GetIp />
+            <Route path="/Owners">
+              <Owners />
             </Route>
             <Route path="/btcprice">
               <GetBTCPrice />
@@ -71,8 +71,8 @@ const Header = (props) => {
         </NavLink>
       </li>
       <li>
-        <NavLink activeClassName="selected" to="/ip">
-          Your IP
+        <NavLink activeClassName="selected" to="/Owners">
+          See Owners
         </NavLink>
       </li>
       <li>

@@ -19,7 +19,7 @@ const BuyCoins = () => {
         setOrderList(data);
         setDataIsLoaded(true);
       });
-  }, [setSelectedCoin]);
+  }, [selectedCoin]);
 
   const handleChange = (evt) => {
     setSelectedCoin({ ...selectedCoin, [evt.target.id]: evt.target.value });
@@ -30,8 +30,20 @@ const BuyCoins = () => {
     console.log("I got clicked");
     const options = facade.makeOptions("POST", true, selectedCoin);
     fetch(Server_URL + "/api/coin/createOrder", options).then((res) =>
-      facade.handleHttpErrors(res).then((data) => console.log(data))
-    );
+      facade.handleHttpErrors(res))
+      .then((data) => {
+
+      console.log(data)})
+
+  };
+
+  const deleteOrder = (evt) =>{
+    evt.preventDefault();
+    const options = facade.makeOptions("DELETE",true);
+    fetch(Server_URL+ `/api/coin/${evt.target.id}`,options).then((res) => facade.handleHttpErrors(res)).then((data) => {
+      setSelectedCoin(data);
+      console.log("deleted" + JSON.stringify(data))})
+   
   };
 
   const total = (amount, buyprice) => {
@@ -60,7 +72,9 @@ const BuyCoins = () => {
               <td>{total(el.amount, el.buyPrice)}</td>
               <td>{el.currentPrice}</td>
               <td>{total(el.amount, el.currentPrice)}</td>
-
+              <td><button onClick={deleteOrder} id={el.id}>Edit</button> / <button onClick={deleteOrder} id={el.id}>Delete</button> </td>
+              
+             
             </tr>
           ))}
         </tbody>
